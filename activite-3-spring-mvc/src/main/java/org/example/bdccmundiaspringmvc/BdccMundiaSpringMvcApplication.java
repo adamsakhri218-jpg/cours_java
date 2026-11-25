@@ -10,9 +10,10 @@ import org.springframework.boot.security.autoconfigure.UserDetailsServiceAutoCon
 import org.springframework.boot.security.autoconfigure.web.servlet.ServletWebSecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class,
-        UserDetailsServiceAutoConfiguration.class,
-        ServletWebSecurityAutoConfiguration.class})
+//@SpringBootApplication(exclude = {SecurityAutoConfiguration.class,
+        //UserDetailsServiceAutoConfiguration.class,
+        //ServletWebSecurityAutoConfiguration.class})
+@SpringBootApplication
 public class BdccMundiaSpringMvcApplication {
 
     public static void main(String[] args) {

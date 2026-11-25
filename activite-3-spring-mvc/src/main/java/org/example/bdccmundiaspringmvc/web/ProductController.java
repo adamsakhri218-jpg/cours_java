@@ -1,4 +1,3 @@
-
 package org.example.bdccmundiaspringmvc.web;
 
 import jakarta.validation.Valid;
@@ -20,34 +19,36 @@ public class ProductController {
     @Autowired
     private ProductRepository productRepository;
 
-
-
-    @GetMapping("/index")
+    @GetMapping("/user/index")
     public String index(Model model) {
         List<Product> products = productRepository.findAll();
         model.addAttribute("productList", products);
         return "products";
     }
-    @GetMapping("/delete")
-    public String Delete (@RequestParam(name = "id") Long id ){
+
+    @GetMapping("/admin/delete")
+    public String Delete(@RequestParam(name = "id") Long id) {
         productRepository.deleteById(id);
-        return "redirect:/index";
+        return "redirect:/user/index";
     }
+
     @GetMapping("/")
     public String home() {
-        return "redirect:/index";
+        return "redirect:/user/index";
     }
-    @GetMapping("/newProduct")
-    public String newProduct(Model model){
-        model.addAttribute("product",new Product());
+
+    @GetMapping("/admin/newProduct")
+    public String newProduct(Model model) {
+        model.addAttribute("product", new Product());
         return "new-product";
     }
-    @PostMapping("/saveProduct")
-    public String saveProduct(@Valid Product product, BindingResult bindingResult, Model model){
-        if(bindingResult.hasErrors()) return "new-product";
-        productRepository.save(product);
-        return "redirect:/index";
 
+    @PostMapping("/admin/saveProduct")
+    public String saveProduct(@Valid Product product,
+                              BindingResult bindingResult,
+                              Model model) {
+        if (bindingResult.hasErrors()) return "new-product";
+        productRepository.save(product);
+        return "redirect:/user/index";
     }
 }
-
